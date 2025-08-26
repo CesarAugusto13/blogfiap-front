@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
+import PostDetail from './pages/PostDetail'; // Corrigido o nome do arquivo
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <HomePage />
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/post/:id" element={<PostDetail />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
