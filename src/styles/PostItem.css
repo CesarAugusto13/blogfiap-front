@@ -1,0 +1,42 @@
+.post {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+    font-size: 1.8em;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.post-content {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.likes-display {
+    margin-top: 10px;
+}
+
+
+.likes-display {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o ícone e o texto */
+    margin-top: 10px;
+}
+
+.likes-icon {
+    width: 16px;  /* Ajuste a largura conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-right: 5px; /* Espaço entre o ícone e o texto */
+}
+
+.likes-text {
+    font-size: 1em;
+    color: #007bff; /* Cor azul para destacar as curtidas */
+}
