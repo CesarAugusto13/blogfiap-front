@@ -1,0 +1,72 @@
+.post-detail {
+    max-width: 800px; /* Limita a largura do post */
+    margin: 20px auto; /* Centraliza o post na página */
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid #ddd; /* Borda leve ao redor do post */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Cor de fundo suave */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.post-title {
+    font-size: 2em; /* Tamanho da fonte do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+    color: #333; /* Cor do texto do título */
+}
+
+.post-author {
+    font-size: 1.2em; /* Tamanho da fonte do autor */
+    color: #555; /* Cor do texto do autor */
+    margin-bottom: 15px; /* Espaçamento abaixo do autor */
+}
+
+.post-content {
+    font-size: 1em; /* Tamanho da fonte do conteúdo */
+    line-height: 1.6; /* Altura da linha para melhor legibilidade */
+    color: #444; /* Cor do texto do conteúdo */
+    margin-bottom: 20px; /* Espaçamento abaixo do conteúdo */
+}
+
+.likes-display {
+    font-size: 1em; /* Tamanho da fonte para curtidas */
+    color: #888; /* Cor do texto das curtidas */
+    margin-bottom: 20px; /* Espaçamento abaixo da seção de curtidas */
+}
+
+.comments-section {
+    margin-top: 30px; /* Espaçamento acima da seção de comentários */
+    border-top: 1px solid #ddd; /* Linha separadora */
+    padding-top: 20px; /* Espaçamento interno acima da seção de comentários */
+}
+
+.comment {
+    background-color: #fff; /* Cor de fundo dos comentários */
+    border: 1px solid #ddd; /* Borda leve ao redor dos comentários */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno dos comentários */
+    margin-bottom: 10px; /* Espaçamento abaixo de cada comentário */
+}
+
+textarea {
+    width: 100%; /* Largura total do campo de texto */
+    height: 80px; /* Altura do campo de texto */
+    padding: 10px; /* Espaçamento interno do campo de texto */
+    border: 1px solid #ccc; /* Borda leve ao redor do campo de texto */
+    border-radius: 5px; /* Bordas arredondadas */
+    resize: none; /* Impede o redimensionamento do campo de texto */
+    margin-bottom: 10px; /* Espaçamento abaixo do campo de texto */
+}
+
+button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Espaçamento interno do botão */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
