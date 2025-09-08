@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // estado para pesquisa
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const [formTitle, setFormTitle] = useState('');
   const [formContent, setFormContent] = useState('');
@@ -173,33 +175,47 @@ const AdminPage = () => {
       {loading && <p>Carregando posts...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {filteredPosts.length > 0 ? (
-          filteredPosts.map((post) => (
-            <li
-              key={post._id || post.id}
-              style={{
-                border: '1px solid #ccc',
-                padding: 15,
-                marginBottom: 10,
-                borderRadius: 4,
+    <ul style={{ listStyle: 'none', padding: 0 }}>
+      {filteredPosts.length > 0 ? (
+        filteredPosts.map((post) => (
+          <li
+            key={post._id || post.id}
+            style={{
+              border: '1px solid #ccc',
+              padding: 15,
+              marginBottom: 10,
+              borderRadius: 4,
+              cursor: 'pointer' // indica que é clicável
+            }}
+            onClick={() => navigate(`/post/${post._id || post.id}`)} // redireciona para detalhes
+          >
+            <h3>{post.titulo}</h3>
+            <p>{post.conteudo}</p>
+            <p><strong>Autor:</strong> {post.autor}</p>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // impede que o clique no botão dispare o navigate
+                handleEdit(post);
               }}
+              style={{ marginRight: 10 }}
             >
-              <h3>{post.titulo}</h3>
-              <p>{post.conteudo}</p>
-              <p><strong>Autor:</strong> {post.autor}</p>
-              <button onClick={() => handleEdit(post)} style={{ marginRight: 10 }}>
-                Editar
-              </button>
-              <button onClick={() => handleDelete(post._id || post.id)} style={{ color: 'red' }}>
-                Excluir
-              </button>
-            </li>
-          ))
-        ) : (
-          <p>Nenhum post encontrado.</p>
-        )}
-      </ul>
+              Editar
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); 
+                handleDelete(post._id || post.id);
+              }}
+              style={{ color: 'red' }}
+            >
+              Excluir
+            </button>
+          </li>
+        ))
+      ) : (
+        <p>Nenhum post encontrado.</p>
+      )}
+    </ul>
     </div>
   );
 };
