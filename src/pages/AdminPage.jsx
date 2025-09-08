@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import { jwtDecode } from 'jwt-decode';
 
-
 const AdminPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); // estado para pesquisa
 
   const [formTitle, setFormTitle] = useState('');
   const [formContent, setFormContent] = useState('');
-  const [formAuthor, setFormAuthor] = useState(''); // será preenchido do token
+  const [formAuthor, setFormAuthor] = useState(''); 
   const [editingPostId, setEditingPostId] = useState(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const AdminPage = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decoded = jwtDecode(token);
+        const decoded = jwtDecode.default(token);
         setFormAuthor(decoded.nome);
       } catch {}
     }
@@ -100,6 +100,17 @@ const AdminPage = () => {
     }
   };
 
+  // Função para atualizar pesquisa
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Filtra os posts pelo título ou conteúdo
+  const filteredPosts = posts.filter(post =>
+    post.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.conteudo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div style={{ maxWidth: 800, margin: '20px auto', padding: 20 }}>
       <h1>Administração de Posts</h1>
@@ -152,32 +163,42 @@ const AdminPage = () => {
       </form>
 
       <h2>Posts existentes</h2>
+      <input
+        type="text"
+        placeholder="Buscar posts..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+        style={{ width: '100%', padding: 8, marginBottom: 20 }}
+      />
       {loading && <p>Carregando posts...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && posts.length === 0 && <p>Nenhum post encontrado.</p>}
 
       <ul style={{ listStyle: 'none', padding: 0 }}>
-        {posts.map((post) => (
-          <li
-            key={post._id || post.id}
-            style={{
-              border: '1px solid #ccc',
-              padding: 15,
-              marginBottom: 10,
-              borderRadius: 4,
-            }}
-          >
-            <h3>{post.titulo}</h3>
-            <p>{post.conteudo}</p>
-            <p><strong>Autor:</strong> {post.autor}</p>
-            <button onClick={() => handleEdit(post)} style={{ marginRight: 10 }}>
-              Editar
-            </button>
-            <button onClick={() => handleDelete(post._id || post.id)} style={{ color: 'red' }}>
-              Excluir
-            </button>
-          </li>
-        ))}
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post) => (
+            <li
+              key={post._id || post.id}
+              style={{
+                border: '1px solid #ccc',
+                padding: 15,
+                marginBottom: 10,
+                borderRadius: 4,
+              }}
+            >
+              <h3>{post.titulo}</h3>
+              <p>{post.conteudo}</p>
+              <p><strong>Autor:</strong> {post.autor}</p>
+              <button onClick={() => handleEdit(post)} style={{ marginRight: 10 }}>
+                Editar
+              </button>
+              <button onClick={() => handleDelete(post._id || post.id)} style={{ color: 'red' }}>
+                Excluir
+              </button>
+            </li>
+          ))
+        ) : (
+          <p>Nenhum post encontrado.</p>
+        )}
       </ul>
     </div>
   );
