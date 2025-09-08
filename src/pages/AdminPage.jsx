@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import api from '../services/api'; // sua instância axios configurada com token
+import api from '../services/api';
+import { jwtDecode } from 'jwt-decode';
+
 
 const AdminPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Estados para o formulário de criação/edição
   const [formTitle, setFormTitle] = useState('');
   const [formContent, setFormContent] = useState('');
+  const [formAuthor, setFormAuthor] = useState(''); // será preenchido do token
   const [editingPostId, setEditingPostId] = useState(null);
 
-  // Carregar posts ao montar o componente
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setFormAuthor(decoded.nome);
+      } catch (err) {
+        console.error('Erro ao decodificar token:', err);
+      }
+    }
     fetchPosts();
   }, []);
 
@@ -29,14 +39,19 @@ const AdminPage = () => {
     }
   };
 
-  // Limpar formulário
   const resetForm = () => {
     setFormTitle('');
     setFormContent('');
     setEditingPostId(null);
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setFormAuthor(decoded.nome);
+      } catch {}
+    }
   };
 
-  // Enviar formulário (criar ou editar)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,17 +62,16 @@ const AdminPage = () => {
 
     try {
       if (editingPostId) {
-        // Editar post
         await api.put(`/posts/${editingPostId}`, {
           titulo: formTitle,
           conteudo: formContent,
         });
         alert('Post atualizado com sucesso!');
       } else {
-        // Criar post
         await api.post('/posts', {
           titulo: formTitle,
           conteudo: formContent,
+          autor: formAuthor, 
         });
         alert('Post criado com sucesso!');
       }
@@ -68,14 +82,12 @@ const AdminPage = () => {
     }
   };
 
-  // Preparar formulário para edição
   const handleEdit = (post) => {
     setFormTitle(post.titulo);
     setFormContent(post.conteudo);
-    setEditingPostId(post._id || post.id); // adapte conforme seu backend
+    setEditingPostId(post._id || post.id);
   };
 
-  // Excluir post
   const handleDelete = async (postId) => {
     if (!window.confirm('Tem certeza que deseja excluir este post?')) return;
 
@@ -92,7 +104,6 @@ const AdminPage = () => {
     <div style={{ maxWidth: 800, margin: '20px auto', padding: 20 }}>
       <h1>Administração de Posts</h1>
 
-      {/* Formulário de criação/edição */}
       <form onSubmit={handleSubmit} style={{ marginBottom: 40 }}>
         <h2>{editingPostId ? 'Editar Post' : 'Novo Post'}</h2>
         <div style={{ marginBottom: 10 }}>
@@ -104,6 +115,17 @@ const AdminPage = () => {
               onChange={(e) => setFormTitle(e.target.value)}
               style={{ width: '100%', padding: 8 }}
               required
+            />
+          </label>
+        </div>
+        <div style={{ marginBottom: 10 }}>
+          <label>
+            Autor:<br />
+            <input
+              type="text"
+              value={formAuthor}
+              readOnly
+              style={{ width: '100%', padding: 8, backgroundColor: '#eee' }}
             />
           </label>
         </div>
@@ -129,7 +151,6 @@ const AdminPage = () => {
         )}
       </form>
 
-      {/* Lista de posts */}
       <h2>Posts existentes</h2>
       {loading && <p>Carregando posts...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -148,6 +169,7 @@ const AdminPage = () => {
           >
             <h3>{post.titulo}</h3>
             <p>{post.conteudo}</p>
+            <p><strong>Autor:</strong> {post.autor}</p>
             <button onClick={() => handleEdit(post)} style={{ marginRight: 10 }}>
               Editar
             </button>
