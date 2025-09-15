@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 const AdminPage = () => {
   const [posts, setPosts] = useState([]);
@@ -116,7 +117,7 @@ const AdminPage = () => {
   return (
     <div style={{ maxWidth: 800, margin: '20px auto', padding: 20 }}>
       <h1>Administração de Posts</h1>
-
+      <Sidebar />
       <form onSubmit={handleSubmit} style={{ marginBottom: 40 }}>
         <h2>{editingPostId ? 'Editar Post' : 'Novo Post'}</h2>
         <div style={{ marginBottom: 10 }}>

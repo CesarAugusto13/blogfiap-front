@@ -1,0 +1,87 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f6fa;
+}
+
+.login-form-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-form {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 24px;
+  color: #2f3640;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1.8px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #273c75;
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #273c75;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #192a56;
+}
+
+/* Mensagem de erro */
+.error-message {
+  margin-top: 15px;
+  color: #e84118;
+  font-weight: 600;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-form-wrapper {
+    padding: 40px 20px;
+  }
+
+  .login-form {
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

@@ -1,72 +1,173 @@
-.post-detail {
-    max-width: 800px; /* Limita a largura do post */
-    margin: 20px auto; /* Centraliza o post na página */
-    padding: 20px; /* Adiciona espaçamento interno */
-    border: 1px solid #ddd; /* Borda leve ao redor do post */
-    border-radius: 8px; /* Bordas arredondadas */
-    background-color: #f9f9f9; /* Cor de fundo suave */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+/* Container principal com sidebar e conteúdo */
+.post-detail-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f6fa;
 }
 
+/* Área principal do conteúdo, com margem para sidebar */
+.post-detail-content {
+  flex: 1;
+  margin-left: 220px; /* largura fixa da sidebar */
+  padding: 30px 40px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Artigo do post */
+.post-detail-article {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Título do post */
 .post-title {
-    font-size: 2em; /* Tamanho da fonte do título */
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
-    color: #333; /* Cor do texto do título */
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #2f3640;
 }
 
+/* Autor */
 .post-author {
-    font-size: 1.2em; /* Tamanho da fonte do autor */
-    color: #555; /* Cor do texto do autor */
-    margin-bottom: 15px; /* Espaçamento abaixo do autor */
+  font-size: 1rem;
+  color: #718093;
+  margin-bottom: 25px;
+  font-weight: 500;
 }
 
+/* Conteúdo do post */
 .post-content {
-    font-size: 1em; /* Tamanho da fonte do conteúdo */
-    line-height: 1.6; /* Altura da linha para melhor legibilidade */
-    color: #444; /* Cor do texto do conteúdo */
-    margin-bottom: 20px; /* Espaçamento abaixo do conteúdo */
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #353b48;
+  margin-bottom: 30px;
+  white-space: pre-wrap; /* mantém quebras de linha */
 }
 
+/* Likes */
 .likes-display {
-    font-size: 1em; /* Tamanho da fonte para curtidas */
-    color: #888; /* Cor do texto das curtidas */
-    margin-bottom: 20px; /* Espaçamento abaixo da seção de curtidas */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #718093;
+  user-select: none;
+  margin-bottom: 40px;
+  transition: color 0.3s ease;
 }
 
+.likes-display:hover {
+  color: #e84118;
+}
+
+.likes-display.liked {
+  color: #e84118;
+  cursor: default !important;
+}
+
+.likes-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(27%) sepia(92%) saturate(7491%) hue-rotate(349deg) brightness(95%) contrast(101%);
+}
+
+/* Seção de comentários */
 .comments-section {
-    margin-top: 30px; /* Espaçamento acima da seção de comentários */
-    border-top: 1px solid #ddd; /* Linha separadora */
-    padding-top: 20px; /* Espaçamento interno acima da seção de comentários */
+  margin-bottom: 30px;
 }
 
+.comments-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #2f3640;
+}
+
+/* Comentários individuais */
 .comment {
-    background-color: #fff; /* Cor de fundo dos comentários */
-    border: 1px solid #ddd; /* Borda leve ao redor dos comentários */
-    border-radius: 5px; /* Bordas arredondadas */
-    padding: 10px; /* Espaçamento interno dos comentários */
-    margin-bottom: 10px; /* Espaçamento abaixo de cada comentário */
+  background-color: #f1f2f6;
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #2f3640;
+  white-space: pre-wrap;
 }
 
-textarea {
-    width: 100%; /* Largura total do campo de texto */
-    height: 80px; /* Altura do campo de texto */
-    padding: 10px; /* Espaçamento interno do campo de texto */
-    border: 1px solid #ccc; /* Borda leve ao redor do campo de texto */
-    border-radius: 5px; /* Bordas arredondadas */
-    resize: none; /* Impede o redimensionamento do campo de texto */
-    margin-bottom: 10px; /* Espaçamento abaixo do campo de texto */
+.no-comments {
+  font-style: italic;
+  color: #718093;
 }
 
-button {
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: white; /* Cor do texto do botão */
-    border: none; /* Remove a borda padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    padding: 10px 15px; /* Espaçamento interno do botão */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
-    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+/* Formulário de comentário */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+.comment-textarea {
+  resize: vertical;
+  min-height: 80px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1.8px solid #dcdde1;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.comment-textarea:focus {
+  border-color: #273c75;
+  outline: none;
+}
+
+.comment-submit-button {
+  align-self: flex-end;
+  background-color: #273c75;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-submit-button:hover {
+  background-color: #192a56;
+}
+
+/* Mensagem de erro */
+.error-message {
+  margin-top: 15px;
+  color: #e84118;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Loading e error states */
+.loading, .error {
+  font-size: 1.25rem;
+  color: #718093;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .post-detail-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .post-detail-article {
+    padding: 20px;
+    margin: 0 10px;
+  }
 }

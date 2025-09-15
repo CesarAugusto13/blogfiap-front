@@ -1,6 +1,7 @@
 import api from '../services/api';
 import { useEffect, useState } from 'react';
 import Post from '../components/PostItem';
+import Sidebar from '../components/Sidebar';
 import '../styles/HomePage.css';
 
 function HomePage() {
@@ -28,6 +29,7 @@ function HomePage() {
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
     };
+
     const filteredPosts = posts.filter(post =>
         post.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.conteudo.toLowerCase().includes(searchTerm.toLowerCase())
@@ -41,23 +43,26 @@ function HomePage() {
         return <div className="error">{error}</div>;
     }
 
-   return (
-        <div className="homepage">
-            <h1 className="title">Home Page</h1>
-            <input
-                type="text"
-                className="search-bar"
-                placeholder="Buscar posts..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-            />
-            {filteredPosts.length > 0 ? (
-                filteredPosts.map(post => (
-                    <Post key={post.id} post={post} />
-                ))
-            ) : (
-                <p className="no-posts">Nenhum post encontrado.</p>
-            )}
+    return (
+        <div className="homepage-container" style={{ display: 'flex' }}>
+            <Sidebar />
+            <main className="homepage-content" style={{ marginLeft: '220px', padding: '20px', flex: 1 }}>
+                <h1 className="title">Home Page</h1>
+                <input
+                    type="text"
+                    className="search-bar"
+                    placeholder="Buscar posts..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+                {filteredPosts.length > 0 ? (
+                    filteredPosts.map(post => (
+                        <Post key={post.id} post={post} />
+                    ))
+                ) : (
+                    <p className="no-posts">Nenhum post encontrado.</p>
+                )}
+            </main>
         </div>
     );
 }

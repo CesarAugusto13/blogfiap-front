@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import api from '../services/api'; // sua instância axios
+import api from '../services/api';
+import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import '../styles/RegisterPage.css';
 
 const Register = () => {
   const [nome, setNome] = useState('');
@@ -37,55 +40,61 @@ const Register = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '40px auto', padding: 20, border: '1px solid #ccc', borderRadius: 8 }}>
-      <h2>Cadastro de Professor</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 10 }}>
-          <label>Nome completo:</label><br />
+    <div className="register-container">
+      <Sidebar />
+      <div className="register-form-wrapper">
+        <form className="register-form" onSubmit={handleSubmit}>
+          <h2>Cadastro de Professor</h2>
+
           <input
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
+            placeholder="Nome completo"
             required
-            style={{ width: '100%', padding: 8 }}
+            className="input-field"
           />
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          <label>Email:</label><br />
+
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
-            style={{ width: '100%', padding: 8 }}
+            className="input-field"
           />
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          <label>Senha:</label><br />
+
           <input
             type="password"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
+            placeholder="Senha"
             required
-            style={{ width: '100%', padding: 8 }}
+            className="input-field"
           />
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          <label>Confirme a senha:</label><br />
+
           <input
             type="password"
             value={confirmaSenha}
             onChange={(e) => setConfirmaSenha(e.target.value)}
+            placeholder="Confirme a senha"
             required
-            style={{ width: '100%', padding: 8 }}
+            className="input-field"
           />
-        </div>
 
-        <button type="submit" style={{ padding: '10px 20px' }}>Registrar</button>
-      </form>
+          <button type="submit" className="submit-button">Registrar</button>
 
-      {error && <p style={{ color: 'red', marginTop: 10 }}>{error}</p>}
-      {success && <p style={{ color: 'green', marginTop: 10 }}>{success}</p>}
+          {error && <p className="error-message">{error}</p>}
+          {success && <p className="success-message">{success}</p>}
+
+          <p style={{ marginTop: '20px', fontSize: '14px', color: '#555' }}>
+            Já tem uma conta?{' '}
+            <Link to="/login" style={{ color: '#273c75', fontWeight: '600' }}>
+              Faça login aqui
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
