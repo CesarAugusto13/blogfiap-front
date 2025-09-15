@@ -1,0 +1,167 @@
+/* Container principal */
+.admin-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Títulos */
+.admin-container h1,
+.admin-container h2 {
+  color: #2f3640;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Formulário */
+.admin-form {
+  margin-bottom: 40px;
+}
+
+.admin-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #353b48;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="email"],
+.admin-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1.8px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.admin-form input[type="text"]:focus,
+.admin-form input[type="email"]:focus,
+.admin-form textarea:focus {
+  border-color: #273c75;
+  outline: none;
+  background-color: #fff;
+}
+
+.admin-form input[readonly] {
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+/* Botões do formulário */
+.admin-form button {
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: #273c75;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.admin-form button:hover {
+  background-color: #192a56;
+}
+
+/* Campo de busca */
+.admin-search {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1.8px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.admin-search:focus {
+  border-color: #273c75;
+  outline: none;
+}
+
+/* Lista de posts */
+.admin-post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item da lista */
+.admin-post-item {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: box-shadow 0.2s ease;
+}
+
+.admin-post-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Conteúdo do post dentro do item */
+.admin-post-item h3 {
+  margin: 0 0 8px 0;
+  color: #2f3640;
+}
+
+.admin-post-item p {
+  margin: 0 0 6px 0;
+  color: #555;
+}
+
+.admin-post-item strong {
+  color: #353b48;
+}
+
+/* Botões editar e excluir */
+.admin-post-buttons {
+  margin-top: 10px;
+}
+
+.admin-post-buttons button {
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-post-buttons button:first-child {
+  background-color: #44bd32;
+  color: white;
+}
+
+.admin-post-buttons button:first-child:hover {
+  background-color: #2f9e1f;
+}
+
+.admin-post-buttons button:last-child {
+  background-color: #e84118;
+  color: white;
+}
+
+.admin-post-buttons button:last-child:hover {
+  background-color: #b72b12;
+}
+
+/* Mensagem de erro */
+.admin-error {
+  color: red;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
