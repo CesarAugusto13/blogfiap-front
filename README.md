@@ -70,7 +70,7 @@ EducaOn é uma aplicação web de blogging dinâmico voltada para professores e 
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/seu-usuario/blogfiap-front.git
+    git clone https://github.com/CesarAugusto13/blogfiap-front.git
     cd blogfiap-front
     ```
 
