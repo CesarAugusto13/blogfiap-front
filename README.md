@@ -2,6 +2,7 @@
 
 ## Descrição
 
+- **Projeto no Render:** [Render](https://blogfiap-front.onrender.com)
 EducaOn é uma aplicação web de blogging dinâmico voltada para professores e estudantes, desenvolvida como parte do Tech Challenge do curso. Permite criar, editar, ler e administrar postagens, além de autenticação exclusiva para professores.
 
 ---
@@ -139,4 +140,3 @@ Para dúvidas ou sugestões, entre em contato:
 - **Nome:** César Augusto de Oliveira Santos
 - **Email:** cesiha13@gmail.com
 - **GitHub:** [https://github.com/CesarAugusto13](https://github.com/CesarAugusto13)
-- **Projeto no Render:** [Render](https://blogfiap-front.onrender.com)
