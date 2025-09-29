@@ -132,14 +132,6 @@ EducaOn é uma aplicação web de blogging dinâmico voltada para professores e 
 
 ---
 
-## Próximos Passos e Melhorias
-
-- Implementar gerenciamento global de estado (Context API ou Redux).
-- Melhorar validação e feedback do usuário nos formulários.
-- Adicionar testes automatizados.
-- Implementar Docker e pipeline CI/CD para deploy automatizado.
-- Aprimorar acessibilidade e performance.
-
 ---
 
 ## Contato
