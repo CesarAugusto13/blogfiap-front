@@ -132,8 +132,6 @@ EducaOn é uma aplicação web de blogging dinâmico voltada para professores e 
 
 ---
 
----
-
 ## Contato
 
 Para dúvidas ou sugestões, entre em contato:
